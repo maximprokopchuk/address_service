@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+package api;
+
+message CreateAddressRequest {
+    string name = 1;
+    string type = 2;
+    int32 parent = 3;
+}
+
+message CreateAddressResponse {
+    int32 id = 1;
+    string name = 2;
+    string type = 3;
+    int32 parent = 4;
+}
+
+service AddressService {
+    rpc CreateAddress(CreateAddressRequest) returns (CreateAddressResponse){}
+}
