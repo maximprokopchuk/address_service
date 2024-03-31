@@ -34,7 +34,15 @@ func (server *GRPCServer) CreateAddress(ctx context.Context, req *api.CreateAddr
 }
 
 func (server *GRPCServer) GetAddressesByParent(ctx context.Context, req *api.GetAddressesByParentRequest) (*api.GetAddressesByParentResponse, error) {
-	rec, err := server.Store.Queries.ListAddressesForParent(ctx, pgtype.Int4{Int32: req.Parent, Valid: true})
+	var rec []sqlc.Address
+	var err error
+
+	if req.Parent == 0 {
+		rec, err = server.Store.Queries.ListTopLevelAddresses(ctx)
+	} else {
+		rec, err = server.Store.Queries.ListAddressesForParent(ctx, pgtype.Int4{Int32: req.Parent, Valid: true})
+	}
+
 	if err != nil {
 		return nil, err
 	}

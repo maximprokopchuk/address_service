@@ -7,6 +7,11 @@ SELECT * FROM address
 WHERE parent = $1
 ORDER BY name;
 
+-- name: ListTopLevelAddresses :many
+SELECT * FROM address
+WHERE parent IS NULL
+ORDER BY name;
+
 -- name: CreateAddress :one
 INSERT INTO address (
   name, type, parent

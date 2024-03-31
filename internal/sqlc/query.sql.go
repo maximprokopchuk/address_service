@@ -95,3 +95,34 @@ func (q *Queries) ListAddressesForParent(ctx context.Context, parent pgtype.Int4
 	}
 	return items, nil
 }
+
+const listTopLevelAddresses = `-- name: ListTopLevelAddresses :many
+SELECT id, type, name, parent FROM address
+WHERE parent IS NULL
+ORDER BY name
+`
+
+func (q *Queries) ListTopLevelAddresses(ctx context.Context) ([]Address, error) {
+	rows, err := q.db.Query(ctx, listTopLevelAddresses)
+	if err != nil {
+		return nil, err
+	}
+	defer rows.Close()
+	var items []Address
+	for rows.Next() {
+		var i Address
+		if err := rows.Scan(
+			&i.ID,
+			&i.Type,
+			&i.Name,
+			&i.Parent,
+		); err != nil {
+			return nil, err
+		}
+		items = append(items, i)
+	}
+	if err := rows.Err(); err != nil {
+		return nil, err
+	}
+	return items, nil
+}
