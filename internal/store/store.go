@@ -6,11 +6,13 @@ import (
 
 	"github.com/jackc/pgx/v5"
 	_ "github.com/lib/pq"
+	"github.com/maximprokopchuk/address_service/internal/sqlc"
 )
 
 type Store struct {
 	config     *Config
 	Connection *pgx.Conn
+	Queries    *sqlc.Queries
 }
 
 func New(config *Config) *Store {
@@ -32,8 +34,10 @@ func (s *Store) Open(ctx context.Context) error {
 	if err != nil {
 		return err
 	}
+	queries := sqlc.New(conn)
 
 	s.Connection = conn
+	s.Queries = queries
 
 	return nil
 }

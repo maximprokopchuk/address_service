@@ -19,7 +19,6 @@ func New(st *store.Store) *GRPCServer {
 }
 
 func (server *GRPCServer) CreateAddress(ctx context.Context, req *api.CreateAddressRequest) (*api.AddressResponse, error) {
-	queries := sqlc.New(server.Store.Connection)
 	params := sqlc.CreateAddressParams{
 		Name: req.Name,
 		Type: req.Type,
@@ -27,7 +26,7 @@ func (server *GRPCServer) CreateAddress(ctx context.Context, req *api.CreateAddr
 	if req.Parent != 0 {
 		params.Parent = pgtype.Int4{Int32: req.Parent, Valid: true}
 	}
-	rec, err := queries.CreateAddress(ctx, params)
+	rec, err := server.Store.Queries.CreateAddress(ctx, params)
 
 	if err != nil {
 		return nil, err
@@ -36,8 +35,7 @@ func (server *GRPCServer) CreateAddress(ctx context.Context, req *api.CreateAddr
 }
 
 func (server *GRPCServer) GetAddressesByParent(ctx context.Context, req *api.GetAddressesByParentRequest) (*api.GetAddressesByParentResponse, error) {
-	queries := sqlc.New(server.Store.Connection)
-	rec, err := queries.ListAddressesForParent(ctx, pgtype.Int4{Int32: req.Parent, Valid: true})
+	rec, err := server.Store.Queries.ListAddressesForParent(ctx, pgtype.Int4{Int32: req.Parent, Valid: true})
 	if err != nil {
 		return nil, err
 	}
@@ -53,8 +51,7 @@ func (server *GRPCServer) GetAddressesByParent(ctx context.Context, req *api.Get
 }
 
 func (server *GRPCServer) GetAddressById(ctx context.Context, req *api.GetAddressByIdRequest) (*api.AddressResponse, error) {
-	queries := sqlc.New(server.Store.Connection)
-	rec, err := queries.GetAddress(ctx, int64(req.Id))
+	rec, err := server.Store.Queries.GetAddress(ctx, int64(req.Id))
 	if err != nil {
 		return nil, err
 	}
@@ -62,8 +59,7 @@ func (server *GRPCServer) GetAddressById(ctx context.Context, req *api.GetAddres
 }
 
 func (server *GRPCServer) DeleteAddress(ctx context.Context, req *api.DeleteAddressRequest) (*api.Empty, error) {
-	queries := sqlc.New(server.Store.Connection)
-	err := queries.DeleteAddress(ctx, int64(req.Id))
+	err := server.Store.Queries.DeleteAddress(ctx, int64(req.Id))
 	if err != nil {
 		return nil, err
 	}
