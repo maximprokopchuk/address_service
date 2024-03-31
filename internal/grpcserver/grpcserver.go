@@ -2,7 +2,6 @@ package grpcserver
 
 import (
 	"context"
-	"fmt"
 
 	"github.com/jackc/pgx/v5/pgtype"
 	"github.com/maximprokopchuk/address_service/internal/api"
@@ -40,7 +39,6 @@ func (server *GRPCServer) GetAddressesByParent(ctx context.Context, req *api.Get
 		return nil, err
 	}
 
-	fmt.Println(len(rec))
 	var result []*api.AddressResponse
 	for _, element := range rec {
 		newRec := api.AddressResponse{Id: int32(element.ID), Name: element.Name, Type: element.Type, Parent: element.Parent.Int32}
