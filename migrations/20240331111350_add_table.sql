@@ -11,5 +11,5 @@ CREATE TABLE address (
 
 -- +goose Down
 -- +goose StatementBegin
-DROP TABLE address
+DROP TABLE address;
 -- +goose StatementEnd
