@@ -18,9 +18,8 @@ func New(st *store.Store) *GRPCServer {
 	return &GRPCServer{Store: st}
 }
 
-func (server *GRPCServer) CreateAddress(ctx context.Context, req *api.CreateAddressRequest) (*api.CreateAddressResponse, error) {
+func (server *GRPCServer) CreateAddress(ctx context.Context, req *api.CreateAddressRequest) (*api.AddressResponse, error) {
 	queries := sqlc.New(server.Store.Connection)
-	fmt.Println(req.Parent)
 	params := sqlc.CreateAddressParams{
 		Name: req.Name,
 		Type: req.Type,
@@ -33,5 +32,40 @@ func (server *GRPCServer) CreateAddress(ctx context.Context, req *api.CreateAddr
 	if err != nil {
 		return nil, err
 	}
-	return &api.CreateAddressResponse{Id: int32(rec.ID), Name: rec.Name, Type: rec.Type, Parent: req.Parent}, nil
+	return &api.AddressResponse{Id: int32(rec.ID), Name: rec.Name, Type: rec.Type, Parent: rec.Parent.Int32}, nil
+}
+
+func (server *GRPCServer) GetAddressesByParent(ctx context.Context, req *api.GetAddressesByParentRequest) (*api.GetAddressesByParentResponse, error) {
+	queries := sqlc.New(server.Store.Connection)
+	rec, err := queries.ListAddressesForParent(ctx, pgtype.Int4{Int32: req.Parent, Valid: true})
+	if err != nil {
+		return nil, err
+	}
+
+	fmt.Println(len(rec))
+	var result []*api.AddressResponse
+	for _, element := range rec {
+		newRec := api.AddressResponse{Id: int32(element.ID), Name: element.Name, Type: element.Type, Parent: element.Parent.Int32}
+		result = append(result, &newRec)
+	}
+	return &api.GetAddressesByParentResponse{Items: result}, nil
+
+}
+
+func (server *GRPCServer) GetAddressById(ctx context.Context, req *api.GetAddressByIdRequest) (*api.AddressResponse, error) {
+	queries := sqlc.New(server.Store.Connection)
+	rec, err := queries.GetAddress(ctx, int64(req.Id))
+	if err != nil {
+		return nil, err
+	}
+	return &api.AddressResponse{Id: int32(rec.ID), Name: rec.Name, Type: rec.Type, Parent: rec.Parent.Int32}, nil
+}
+
+func (server *GRPCServer) DeleteAddress(ctx context.Context, req *api.DeleteAddressRequest) (*api.Empty, error) {
+	queries := sqlc.New(server.Store.Connection)
+	err := queries.DeleteAddress(ctx, int64(req.Id))
+	if err != nil {
+		return nil, err
+	}
+	return &api.Empty{}, nil
 }

@@ -8,13 +8,36 @@ message CreateAddressRequest {
     int32 parent = 3;
 }
 
-message CreateAddressResponse {
+message AddressResponse {
     int32 id = 1;
     string name = 2;
     string type = 3;
     int32 parent = 4;
 }
 
+message GetAddressesByParentRequest {
+    int32 parent = 1;
+}
+
+message GetAddressesByParentResponse {
+    repeated AddressResponse items = 1;
+}
+
+message GetAddressByIdRequest {
+    int32 id = 1;
+}
+
+message DeleteAddressRequest {
+    int32 id = 1;
+}
+
+message Empty {
+
+}
+
 service AddressService {
-    rpc CreateAddress(CreateAddressRequest) returns (CreateAddressResponse){}
+    rpc CreateAddress(CreateAddressRequest) returns (AddressResponse){}
+    rpc GetAddressesByParent(GetAddressesByParentRequest) returns (GetAddressesByParentResponse) {}
+    rpc GetAddressById(GetAddressByIdRequest) returns (AddressResponse) {}
+    rpc DeleteAddress(DeleteAddressRequest) returns (Empty) {}
 }

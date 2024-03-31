@@ -3,5 +3,5 @@ CREATE TABLE address (
   type text      NOT NULL,
   name text      NOT NULL,
   parent INTEGER NULL,
-  FOREIGN KEY (parent) REFERENCES address(id)
+  FOREIGN KEY (parent) REFERENCES address(id) ON DELETE CASCADE
 );
