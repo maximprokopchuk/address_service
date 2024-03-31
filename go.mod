@@ -7,7 +7,6 @@ require (
 	github.com/golang/protobuf v1.5.4
 	github.com/jackc/pgx/v5 v5.5.5
 	github.com/lib/pq v1.10.9
-	google.golang.org/genproto v0.0.0-20240123012728-ef4313101c80
 	google.golang.org/grpc v1.62.1
 )
 
