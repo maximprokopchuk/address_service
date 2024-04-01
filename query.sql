@@ -2,12 +2,12 @@
 SELECT * FROM address
 WHERE id = $1 LIMIT 1;
 
--- name: ListAddressesForParent :many
+-- name: ListAddressesByParent :many
 SELECT * FROM address
 WHERE parent_id = $1
 ORDER BY name;
 
--- name: GetAddressesByParent :many
+-- name: ListTopLevelAddresses :many
 SELECT * FROM address
 WHERE parent_id IS NULL
 ORDER BY name;

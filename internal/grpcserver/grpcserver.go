@@ -41,9 +41,9 @@ func (server *GRPCServer) ListGetAddressesByParent(ctx context.Context, req *api
 		parentId = req.GetParentId()
 	)
 	if parentId == 0 {
-		rec, err = server.Store.Queries.GetAddressesByParent(ctx)
+		rec, err = server.Store.Queries.ListTopLevelAddresses(ctx)
 	} else {
-		rec, err = server.Store.Queries.ListAddressesForParent(ctx, pgtype.Int4{Int32: parentId, Valid: true})
+		rec, err = server.Store.Queries.ListAddressesByParent(ctx, pgtype.Int4{Int32: parentId, Valid: true})
 	}
 
 	if err != nil {

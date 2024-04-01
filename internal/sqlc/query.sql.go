@@ -65,14 +65,14 @@ func (q *Queries) GetAddress(ctx context.Context, id int64) (Address, error) {
 	return i, err
 }
 
-const getAddressesByParent = `-- name: GetAddressesByParent :many
+const listAddressesByParent = `-- name: ListAddressesByParent :many
 SELECT id, type, name, parent_id FROM address
-WHERE parent_id IS NULL
+WHERE parent_id = $1
 ORDER BY name
 `
 
-func (q *Queries) GetAddressesByParent(ctx context.Context) ([]Address, error) {
-	rows, err := q.db.Query(ctx, getAddressesByParent)
+func (q *Queries) ListAddressesByParent(ctx context.Context, parentID pgtype.Int4) ([]Address, error) {
+	rows, err := q.db.Query(ctx, listAddressesByParent, parentID)
 	if err != nil {
 		return nil, err
 	}
@@ -96,14 +96,14 @@ func (q *Queries) GetAddressesByParent(ctx context.Context) ([]Address, error) {
 	return items, nil
 }
 
-const listAddressesForParent = `-- name: ListAddressesForParent :many
+const listTopLevelAddresses = `-- name: ListTopLevelAddresses :many
 SELECT id, type, name, parent_id FROM address
-WHERE parent_id = $1
+WHERE parent_id IS NULL
 ORDER BY name
 `
 
-func (q *Queries) ListAddressesForParent(ctx context.Context, parentID pgtype.Int4) ([]Address, error) {
-	rows, err := q.db.Query(ctx, listAddressesForParent, parentID)
+func (q *Queries) ListTopLevelAddresses(ctx context.Context) ([]Address, error) {
+	rows, err := q.db.Query(ctx, listTopLevelAddresses)
 	if err != nil {
 		return nil, err
 	}
