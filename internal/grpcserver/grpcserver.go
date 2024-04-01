@@ -4,9 +4,9 @@ import (
 	"context"
 
 	"github.com/jackc/pgx/v5/pgtype"
-	"github.com/maximprokopchuk/address_service/internal/api"
 	"github.com/maximprokopchuk/address_service/internal/sqlc"
 	"github.com/maximprokopchuk/address_service/internal/store"
+	"github.com/maximprokopchuk/address_service/pkg/api"
 )
 
 type GRPCServer struct {
