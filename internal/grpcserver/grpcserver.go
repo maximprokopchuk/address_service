@@ -34,7 +34,7 @@ func (server *GRPCServer) CreateAddress(ctx context.Context, req *api.CreateAddr
 	return &api.AddressResponse{Id: int32(rec.ID), Name: rec.Name, Type: rec.Type, ParentId: rec.ParentID.Int32}, nil
 }
 
-func (server *GRPCServer) ListGetAddressesByParent(ctx context.Context, req *api.GetAddressesByParentRequest) (*api.GetAddressesByParentResponse, error) {
+func (server *GRPCServer) ListGetAddressesByParent(ctx context.Context, req *api.GetAddressesByParentIdRequest) (*api.GetAddressesByParentIdResponse, error) {
 	var (
 		rec      []sqlc.Address
 		err      error
@@ -55,7 +55,7 @@ func (server *GRPCServer) ListGetAddressesByParent(ctx context.Context, req *api
 		newRec := api.AddressResponse{Id: int32(element.ID), Name: element.Name, Type: element.Type, ParentId: element.ParentID.Int32}
 		result = append(result, &newRec)
 	}
-	return &api.GetAddressesByParentResponse{Items: result}, nil
+	return &api.GetAddressesByParentIdResponse{Items: result}, nil
 
 }
 

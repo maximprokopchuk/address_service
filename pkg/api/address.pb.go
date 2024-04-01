@@ -142,78 +142,78 @@ func (m *AddressResponse) GetParentId() int32 {
 	return 0
 }
 
-type GetAddressesByParentRequest struct {
+type GetAddressesByParentIdRequest struct {
 	ParentId             int32    `protobuf:"varint,1,opt,name=parent_id,json=parentId,proto3" json:"parent_id,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
 	XXX_unrecognized     []byte   `json:"-"`
 	XXX_sizecache        int32    `json:"-"`
 }
 
-func (m *GetAddressesByParentRequest) Reset()         { *m = GetAddressesByParentRequest{} }
-func (m *GetAddressesByParentRequest) String() string { return proto.CompactTextString(m) }
-func (*GetAddressesByParentRequest) ProtoMessage()    {}
-func (*GetAddressesByParentRequest) Descriptor() ([]byte, []int) {
+func (m *GetAddressesByParentIdRequest) Reset()         { *m = GetAddressesByParentIdRequest{} }
+func (m *GetAddressesByParentIdRequest) String() string { return proto.CompactTextString(m) }
+func (*GetAddressesByParentIdRequest) ProtoMessage()    {}
+func (*GetAddressesByParentIdRequest) Descriptor() ([]byte, []int) {
 	return fileDescriptor_982c640dad8fe78e, []int{2}
 }
 
-func (m *GetAddressesByParentRequest) XXX_Unmarshal(b []byte) error {
+func (m *GetAddressesByParentIdRequest) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_GetAddressesByParentRequest.Unmarshal(m, b)
 }
-func (m *GetAddressesByParentRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+func (m *GetAddressesByParentIdRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	return xxx_messageInfo_GetAddressesByParentRequest.Marshal(b, m, deterministic)
 }
-func (m *GetAddressesByParentRequest) XXX_Merge(src proto.Message) {
+func (m *GetAddressesByParentIdRequest) XXX_Merge(src proto.Message) {
 	xxx_messageInfo_GetAddressesByParentRequest.Merge(m, src)
 }
-func (m *GetAddressesByParentRequest) XXX_Size() int {
+func (m *GetAddressesByParentIdRequest) XXX_Size() int {
 	return xxx_messageInfo_GetAddressesByParentRequest.Size(m)
 }
-func (m *GetAddressesByParentRequest) XXX_DiscardUnknown() {
+func (m *GetAddressesByParentIdRequest) XXX_DiscardUnknown() {
 	xxx_messageInfo_GetAddressesByParentRequest.DiscardUnknown(m)
 }
 
 var xxx_messageInfo_GetAddressesByParentRequest proto.InternalMessageInfo
 
-func (m *GetAddressesByParentRequest) GetParentId() int32 {
+func (m *GetAddressesByParentIdRequest) GetParentId() int32 {
 	if m != nil {
 		return m.ParentId
 	}
 	return 0
 }
 
-type GetAddressesByParentResponse struct {
+type GetAddressesByParentIdResponse struct {
 	Items                []*AddressResponse `protobuf:"bytes,1,rep,name=items,proto3" json:"items,omitempty"`
 	XXX_NoUnkeyedLiteral struct{}           `json:"-"`
 	XXX_unrecognized     []byte             `json:"-"`
 	XXX_sizecache        int32              `json:"-"`
 }
 
-func (m *GetAddressesByParentResponse) Reset()         { *m = GetAddressesByParentResponse{} }
-func (m *GetAddressesByParentResponse) String() string { return proto.CompactTextString(m) }
-func (*GetAddressesByParentResponse) ProtoMessage()    {}
-func (*GetAddressesByParentResponse) Descriptor() ([]byte, []int) {
+func (m *GetAddressesByParentIdResponse) Reset()         { *m = GetAddressesByParentIdResponse{} }
+func (m *GetAddressesByParentIdResponse) String() string { return proto.CompactTextString(m) }
+func (*GetAddressesByParentIdResponse) ProtoMessage()    {}
+func (*GetAddressesByParentIdResponse) Descriptor() ([]byte, []int) {
 	return fileDescriptor_982c640dad8fe78e, []int{3}
 }
 
-func (m *GetAddressesByParentResponse) XXX_Unmarshal(b []byte) error {
+func (m *GetAddressesByParentIdResponse) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_GetAddressesByParentResponse.Unmarshal(m, b)
 }
-func (m *GetAddressesByParentResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+func (m *GetAddressesByParentIdResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	return xxx_messageInfo_GetAddressesByParentResponse.Marshal(b, m, deterministic)
 }
-func (m *GetAddressesByParentResponse) XXX_Merge(src proto.Message) {
+func (m *GetAddressesByParentIdResponse) XXX_Merge(src proto.Message) {
 	xxx_messageInfo_GetAddressesByParentResponse.Merge(m, src)
 }
-func (m *GetAddressesByParentResponse) XXX_Size() int {
+func (m *GetAddressesByParentIdResponse) XXX_Size() int {
 	return xxx_messageInfo_GetAddressesByParentResponse.Size(m)
 }
-func (m *GetAddressesByParentResponse) XXX_DiscardUnknown() {
+func (m *GetAddressesByParentIdResponse) XXX_DiscardUnknown() {
 	xxx_messageInfo_GetAddressesByParentResponse.DiscardUnknown(m)
 }
 
 var xxx_messageInfo_GetAddressesByParentResponse proto.InternalMessageInfo
 
-func (m *GetAddressesByParentResponse) GetItems() []*AddressResponse {
+func (m *GetAddressesByParentIdResponse) GetItems() []*AddressResponse {
 	if m != nil {
 		return m.Items
 	}
@@ -332,8 +332,8 @@ var xxx_messageInfo_Empty proto.InternalMessageInfo
 func init() {
 	proto.RegisterType((*CreateAddressRequest)(nil), "api.CreateAddressRequest")
 	proto.RegisterType((*AddressResponse)(nil), "api.AddressResponse")
-	proto.RegisterType((*GetAddressesByParentRequest)(nil), "api.GetAddressesByParentRequest")
-	proto.RegisterType((*GetAddressesByParentResponse)(nil), "api.GetAddressesByParentResponse")
+	proto.RegisterType((*GetAddressesByParentIdRequest)(nil), "api.GetAddressesByParentIdRequest")
+	proto.RegisterType((*GetAddressesByParentIdResponse)(nil), "api.GetAddressesByParentIdResponse")
 	proto.RegisterType((*GetAddressByIdRequest)(nil), "api.GetAddressByIdRequest")
 	proto.RegisterType((*DeleteAddressRequest)(nil), "api.DeleteAddressRequest")
 	proto.RegisterType((*Empty)(nil), "api.Empty")
@@ -379,7 +379,7 @@ const _ = grpc.SupportPackageIsVersion4
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
 type AddressServiceClient interface {
 	CreateAddress(ctx context.Context, in *CreateAddressRequest, opts ...grpc.CallOption) (*AddressResponse, error)
-	ListGetAddressesByParent(ctx context.Context, in *GetAddressesByParentRequest, opts ...grpc.CallOption) (*GetAddressesByParentResponse, error)
+	ListGetAddressesByParent(ctx context.Context, in *GetAddressesByParentIdRequest, opts ...grpc.CallOption) (*GetAddressesByParentIdResponse, error)
 	GetAddressById(ctx context.Context, in *GetAddressByIdRequest, opts ...grpc.CallOption) (*AddressResponse, error)
 	DeleteAddress(ctx context.Context, in *DeleteAddressRequest, opts ...grpc.CallOption) (*Empty, error)
 }
@@ -401,8 +401,8 @@ func (c *addressServiceClient) CreateAddress(ctx context.Context, in *CreateAddr
 	return out, nil
 }
 
-func (c *addressServiceClient) ListGetAddressesByParent(ctx context.Context, in *GetAddressesByParentRequest, opts ...grpc.CallOption) (*GetAddressesByParentResponse, error) {
-	out := new(GetAddressesByParentResponse)
+func (c *addressServiceClient) ListGetAddressesByParent(ctx context.Context, in *GetAddressesByParentIdRequest, opts ...grpc.CallOption) (*GetAddressesByParentIdResponse, error) {
+	out := new(GetAddressesByParentIdResponse)
 	err := c.cc.Invoke(ctx, "/api.AddressService/ListGetAddressesByParent", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -431,7 +431,7 @@ func (c *addressServiceClient) DeleteAddress(ctx context.Context, in *DeleteAddr
 // AddressServiceServer is the server API for AddressService service.
 type AddressServiceServer interface {
 	CreateAddress(context.Context, *CreateAddressRequest) (*AddressResponse, error)
-	ListGetAddressesByParent(context.Context, *GetAddressesByParentRequest) (*GetAddressesByParentResponse, error)
+	ListGetAddressesByParent(context.Context, *GetAddressesByParentIdRequest) (*GetAddressesByParentIdResponse, error)
 	GetAddressById(context.Context, *GetAddressByIdRequest) (*AddressResponse, error)
 	DeleteAddress(context.Context, *DeleteAddressRequest) (*Empty, error)
 }
@@ -443,7 +443,7 @@ type UnimplementedAddressServiceServer struct {
 func (*UnimplementedAddressServiceServer) CreateAddress(ctx context.Context, req *CreateAddressRequest) (*AddressResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateAddress not implemented")
 }
-func (*UnimplementedAddressServiceServer) ListGetAddressesByParent(ctx context.Context, req *GetAddressesByParentRequest) (*GetAddressesByParentResponse, error) {
+func (*UnimplementedAddressServiceServer) ListGetAddressesByParent(ctx context.Context, req *GetAddressesByParentIdRequest) (*GetAddressesByParentIdResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListGetAddressesByParent not implemented")
 }
 func (*UnimplementedAddressServiceServer) GetAddressById(ctx context.Context, req *GetAddressByIdRequest) (*AddressResponse, error) {
@@ -476,7 +476,7 @@ func _AddressService_CreateAddress_Handler(srv interface{}, ctx context.Context,
 }
 
 func _AddressService_ListGetAddressesByParent_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetAddressesByParentRequest)
+	in := new(GetAddressesByParentIdRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -488,7 +488,7 @@ func _AddressService_ListGetAddressesByParent_Handler(srv interface{}, ctx conte
 		FullMethod: "/api.AddressService/ListGetAddressesByParent",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AddressServiceServer).ListGetAddressesByParent(ctx, req.(*GetAddressesByParentRequest))
+		return srv.(AddressServiceServer).ListGetAddressesByParent(ctx, req.(*GetAddressesByParentIdRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }

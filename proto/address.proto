@@ -15,11 +15,11 @@ message AddressResponse {
     int32 parent_id = 4;
 }
 
-message GetAddressesByParentRequest {
+message GetAddressesByParentIdRequest {
     int32 parent_id = 1;
 }
 
-message GetAddressesByParentResponse {
+message GetAddressesByParentIdResponse {
     repeated AddressResponse items = 1;
 }
 
@@ -37,7 +37,7 @@ message Empty {
 
 service AddressService {
     rpc CreateAddress(CreateAddressRequest) returns (AddressResponse){}
-    rpc ListGetAddressesByParent(GetAddressesByParentRequest) returns (GetAddressesByParentResponse) {}
+    rpc ListGetAddressesByParent(GetAddressesByParentIdRequest) returns (GetAddressesByParentIdResponse) {}
     rpc GetAddressById(GetAddressByIdRequest) returns (AddressResponse) {}
     rpc DeleteAddress(DeleteAddressRequest) returns (Empty) {}
 }
