@@ -13,27 +13,27 @@ import (
 
 const createAddress = `-- name: CreateAddress :one
 INSERT INTO address (
-  name, type, parent
+  name, type, parent_id
 ) VALUES (
   $1, $2, $3
 )
-RETURNING id, type, name, parent
+RETURNING id, type, name, parent_id
 `
 
 type CreateAddressParams struct {
-	Name   string
-	Type   string
-	Parent pgtype.Int4
+	Name     string
+	Type     string
+	ParentID pgtype.Int4
 }
 
 func (q *Queries) CreateAddress(ctx context.Context, arg CreateAddressParams) (Address, error) {
-	row := q.db.QueryRow(ctx, createAddress, arg.Name, arg.Type, arg.Parent)
+	row := q.db.QueryRow(ctx, createAddress, arg.Name, arg.Type, arg.ParentID)
 	var i Address
 	err := row.Scan(
 		&i.ID,
 		&i.Type,
 		&i.Name,
-		&i.Parent,
+		&i.ParentID,
 	)
 	return i, err
 }
@@ -49,7 +49,7 @@ func (q *Queries) DeleteAddress(ctx context.Context, id int64) error {
 }
 
 const getAddress = `-- name: GetAddress :one
-SELECT id, type, name, parent FROM address
+SELECT id, type, name, parent_id FROM address
 WHERE id = $1 LIMIT 1
 `
 
@@ -60,19 +60,19 @@ func (q *Queries) GetAddress(ctx context.Context, id int64) (Address, error) {
 		&i.ID,
 		&i.Type,
 		&i.Name,
-		&i.Parent,
+		&i.ParentID,
 	)
 	return i, err
 }
 
-const listAddressesForParent = `-- name: ListAddressesForParent :many
-SELECT id, type, name, parent FROM address
-WHERE parent = $1
+const getAddressesByParent = `-- name: GetAddressesByParent :many
+SELECT id, type, name, parent_id FROM address
+WHERE parent_id IS NULL
 ORDER BY name
 `
 
-func (q *Queries) ListAddressesForParent(ctx context.Context, parent pgtype.Int4) ([]Address, error) {
-	rows, err := q.db.Query(ctx, listAddressesForParent, parent)
+func (q *Queries) GetAddressesByParent(ctx context.Context) ([]Address, error) {
+	rows, err := q.db.Query(ctx, getAddressesByParent)
 	if err != nil {
 		return nil, err
 	}
@@ -84,7 +84,7 @@ func (q *Queries) ListAddressesForParent(ctx context.Context, parent pgtype.Int4
 			&i.ID,
 			&i.Type,
 			&i.Name,
-			&i.Parent,
+			&i.ParentID,
 		); err != nil {
 			return nil, err
 		}
@@ -96,14 +96,14 @@ func (q *Queries) ListAddressesForParent(ctx context.Context, parent pgtype.Int4
 	return items, nil
 }
 
-const listTopLevelAddresses = `-- name: ListTopLevelAddresses :many
-SELECT id, type, name, parent FROM address
-WHERE parent IS NULL
+const listAddressesForParent = `-- name: ListAddressesForParent :many
+SELECT id, type, name, parent_id FROM address
+WHERE parent_id = $1
 ORDER BY name
 `
 
-func (q *Queries) ListTopLevelAddresses(ctx context.Context) ([]Address, error) {
-	rows, err := q.db.Query(ctx, listTopLevelAddresses)
+func (q *Queries) ListAddressesForParent(ctx context.Context, parentID pgtype.Int4) ([]Address, error) {
+	rows, err := q.db.Query(ctx, listAddressesForParent, parentID)
 	if err != nil {
 		return nil, err
 	}
@@ -115,7 +115,7 @@ func (q *Queries) ListTopLevelAddresses(ctx context.Context) ([]Address, error) 
 			&i.ID,
 			&i.Type,
 			&i.Name,
-			&i.Parent,
+			&i.ParentID,
 		); err != nil {
 			return nil, err
 		}

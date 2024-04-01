@@ -9,8 +9,8 @@ import (
 )
 
 type Address struct {
-	ID     int64
-	Type   string
-	Name   string
-	Parent pgtype.Int4
+	ID       int64
+	Type     string
+	Name     string
+	ParentID pgtype.Int4
 }

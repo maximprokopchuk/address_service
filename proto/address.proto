@@ -5,18 +5,18 @@ package api;
 message CreateAddressRequest {
     string name = 1;
     string type = 2;
-    int32 parent = 3;
+    int32 parent_id = 3;
 }
 
 message AddressResponse {
     int32 id = 1;
     string name = 2;
     string type = 3;
-    int32 parent = 4;
+    int32 parent_id = 4;
 }
 
 message GetAddressesByParentRequest {
-    int32 parent = 1;
+    int32 parent_id = 1;
 }
 
 message GetAddressesByParentResponse {
@@ -37,7 +37,7 @@ message Empty {
 
 service AddressService {
     rpc CreateAddress(CreateAddressRequest) returns (AddressResponse){}
-    rpc GetAddressesByParent(GetAddressesByParentRequest) returns (GetAddressesByParentResponse) {}
+    rpc ListGetAddressesByParent(GetAddressesByParentRequest) returns (GetAddressesByParentResponse) {}
     rpc GetAddressById(GetAddressByIdRequest) returns (AddressResponse) {}
     rpc DeleteAddress(DeleteAddressRequest) returns (Empty) {}
 }
