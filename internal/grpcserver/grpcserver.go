@@ -17,7 +17,7 @@ func New(st *store.Store) *GRPCServer {
 	return &GRPCServer{Store: st}
 }
 
-func (server *GRPCServer) CreateAddress(ctx context.Context, req *api.CreateAddressRequest) (*api.AddressResponse, error) {
+func (server *GRPCServer) CreateAddress(ctx context.Context, req *api.CreateAddressRequest) (*api.CreateAddressResponse, error) {
 	params := sqlc.CreateAddressParams{
 		Name: req.GetName(),
 		Type: req.GetType(),
@@ -31,7 +31,7 @@ func (server *GRPCServer) CreateAddress(ctx context.Context, req *api.CreateAddr
 	if err != nil {
 		return nil, err
 	}
-	return &api.AddressResponse{Result: &api.Address{Id: int32(rec.ID), Name: rec.Name, Type: rec.Type, ParentId: rec.ParentID.Int32}}, nil
+	return &api.CreateAddressResponse{Result: &api.Address{Id: int32(rec.ID), Name: rec.Name, Type: rec.Type, ParentId: rec.ParentID.Int32}}, nil
 }
 
 func (server *GRPCServer) ListAddressesByParentAndType(ctx context.Context, req *api.ListAddressesByParentIdAndTypeRequest) (*api.ListAddressesByParentIdAndTypeResponse, error) {
@@ -64,18 +64,18 @@ func (server *GRPCServer) ListAddressesByParentAndType(ctx context.Context, req 
 
 }
 
-func (server *GRPCServer) GetAddressById(ctx context.Context, req *api.GetAddressByIdRequest) (*api.AddressResponse, error) {
+func (server *GRPCServer) GetAddressById(ctx context.Context, req *api.GetAddressByIdRequest) (*api.GetAddressResponse, error) {
 	rec, err := server.Store.Queries.GetAddress(ctx, int64(req.GetId()))
 	if err != nil {
 		return nil, err
 	}
-	return &api.AddressResponse{Result: &api.Address{Id: int32(rec.ID), Name: rec.Name, Type: rec.Type, ParentId: rec.ParentID.Int32}}, nil
+	return &api.GetAddressResponse{Result: &api.Address{Id: int32(rec.ID), Name: rec.Name, Type: rec.Type, ParentId: rec.ParentID.Int32}}, nil
 }
 
-func (server *GRPCServer) DeleteAddress(ctx context.Context, req *api.DeleteAddressRequest) (*api.Empty, error) {
+func (server *GRPCServer) DeleteAddress(ctx context.Context, req *api.DeleteAddressRequest) (*api.DeleteAddressResponse, error) {
 	err := server.Store.Queries.DeleteAddress(ctx, int64(req.GetId()))
 	if err != nil {
 		return nil, err
 	}
-	return &api.Empty{}, nil
+	return &api.DeleteAddressResponse{}, nil
 }

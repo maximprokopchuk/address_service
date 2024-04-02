@@ -44,13 +44,13 @@ func run() error {
 	l, err := net.Listen("tcp", ":"+cfg.BindUrl)
 
 	if err != nil {
-		log.Fatal(err)
+		return err
 	}
 
 	log.Println("LISTEN " + cfg.BindUrl)
 
 	if err = s.Serve(l); err != nil {
-		log.Fatal(err)
+		return err
 	}
 
 	return nil

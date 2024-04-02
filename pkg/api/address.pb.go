@@ -142,39 +142,39 @@ func (m *Address) GetParentId() int32 {
 	return 0
 }
 
-type AddressResponse struct {
+type CreateAddressResponse struct {
 	Result               *Address `protobuf:"bytes,1,opt,name=result,proto3" json:"result,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
 	XXX_unrecognized     []byte   `json:"-"`
 	XXX_sizecache        int32    `json:"-"`
 }
 
-func (m *AddressResponse) Reset()         { *m = AddressResponse{} }
-func (m *AddressResponse) String() string { return proto.CompactTextString(m) }
-func (*AddressResponse) ProtoMessage()    {}
-func (*AddressResponse) Descriptor() ([]byte, []int) {
+func (m *CreateAddressResponse) Reset()         { *m = CreateAddressResponse{} }
+func (m *CreateAddressResponse) String() string { return proto.CompactTextString(m) }
+func (*CreateAddressResponse) ProtoMessage()    {}
+func (*CreateAddressResponse) Descriptor() ([]byte, []int) {
 	return fileDescriptor_982c640dad8fe78e, []int{2}
 }
 
-func (m *AddressResponse) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_AddressResponse.Unmarshal(m, b)
+func (m *CreateAddressResponse) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_CreateAddressResponse.Unmarshal(m, b)
 }
-func (m *AddressResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_AddressResponse.Marshal(b, m, deterministic)
+func (m *CreateAddressResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_CreateAddressResponse.Marshal(b, m, deterministic)
 }
-func (m *AddressResponse) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_AddressResponse.Merge(m, src)
+func (m *CreateAddressResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_CreateAddressResponse.Merge(m, src)
 }
-func (m *AddressResponse) XXX_Size() int {
-	return xxx_messageInfo_AddressResponse.Size(m)
+func (m *CreateAddressResponse) XXX_Size() int {
+	return xxx_messageInfo_CreateAddressResponse.Size(m)
 }
-func (m *AddressResponse) XXX_DiscardUnknown() {
-	xxx_messageInfo_AddressResponse.DiscardUnknown(m)
+func (m *CreateAddressResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_CreateAddressResponse.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_AddressResponse proto.InternalMessageInfo
+var xxx_messageInfo_CreateAddressResponse proto.InternalMessageInfo
 
-func (m *AddressResponse) GetResult() *Address {
+func (m *CreateAddressResponse) GetResult() *Address {
 	if m != nil {
 		return m.Result
 	}
@@ -308,6 +308,45 @@ func (m *GetAddressByIdRequest) GetId() int32 {
 	return 0
 }
 
+type GetAddressResponse struct {
+	Result               *Address `protobuf:"bytes,1,opt,name=result,proto3" json:"result,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *GetAddressResponse) Reset()         { *m = GetAddressResponse{} }
+func (m *GetAddressResponse) String() string { return proto.CompactTextString(m) }
+func (*GetAddressResponse) ProtoMessage()    {}
+func (*GetAddressResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_982c640dad8fe78e, []int{6}
+}
+
+func (m *GetAddressResponse) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_GetAddressResponse.Unmarshal(m, b)
+}
+func (m *GetAddressResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_GetAddressResponse.Marshal(b, m, deterministic)
+}
+func (m *GetAddressResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_GetAddressResponse.Merge(m, src)
+}
+func (m *GetAddressResponse) XXX_Size() int {
+	return xxx_messageInfo_GetAddressResponse.Size(m)
+}
+func (m *GetAddressResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_GetAddressResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_GetAddressResponse proto.InternalMessageInfo
+
+func (m *GetAddressResponse) GetResult() *Address {
+	if m != nil {
+		return m.Result
+	}
+	return nil
+}
+
 type DeleteAddressRequest struct {
 	Id                   int32    `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
@@ -319,7 +358,7 @@ func (m *DeleteAddressRequest) Reset()         { *m = DeleteAddressRequest{} }
 func (m *DeleteAddressRequest) String() string { return proto.CompactTextString(m) }
 func (*DeleteAddressRequest) ProtoMessage()    {}
 func (*DeleteAddressRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_982c640dad8fe78e, []int{6}
+	return fileDescriptor_982c640dad8fe78e, []int{7}
 }
 
 func (m *DeleteAddressRequest) XXX_Unmarshal(b []byte) error {
@@ -347,74 +386,76 @@ func (m *DeleteAddressRequest) GetId() int32 {
 	return 0
 }
 
-type Empty struct {
+type DeleteAddressResponse struct {
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
 	XXX_unrecognized     []byte   `json:"-"`
 	XXX_sizecache        int32    `json:"-"`
 }
 
-func (m *Empty) Reset()         { *m = Empty{} }
-func (m *Empty) String() string { return proto.CompactTextString(m) }
-func (*Empty) ProtoMessage()    {}
-func (*Empty) Descriptor() ([]byte, []int) {
-	return fileDescriptor_982c640dad8fe78e, []int{7}
+func (m *DeleteAddressResponse) Reset()         { *m = DeleteAddressResponse{} }
+func (m *DeleteAddressResponse) String() string { return proto.CompactTextString(m) }
+func (*DeleteAddressResponse) ProtoMessage()    {}
+func (*DeleteAddressResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_982c640dad8fe78e, []int{8}
 }
 
-func (m *Empty) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_Empty.Unmarshal(m, b)
+func (m *DeleteAddressResponse) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_DeleteAddressResponse.Unmarshal(m, b)
 }
-func (m *Empty) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_Empty.Marshal(b, m, deterministic)
+func (m *DeleteAddressResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_DeleteAddressResponse.Marshal(b, m, deterministic)
 }
-func (m *Empty) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_Empty.Merge(m, src)
+func (m *DeleteAddressResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_DeleteAddressResponse.Merge(m, src)
 }
-func (m *Empty) XXX_Size() int {
-	return xxx_messageInfo_Empty.Size(m)
+func (m *DeleteAddressResponse) XXX_Size() int {
+	return xxx_messageInfo_DeleteAddressResponse.Size(m)
 }
-func (m *Empty) XXX_DiscardUnknown() {
-	xxx_messageInfo_Empty.DiscardUnknown(m)
+func (m *DeleteAddressResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_DeleteAddressResponse.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_Empty proto.InternalMessageInfo
+var xxx_messageInfo_DeleteAddressResponse proto.InternalMessageInfo
 
 func init() {
 	proto.RegisterType((*CreateAddressRequest)(nil), "api.CreateAddressRequest")
 	proto.RegisterType((*Address)(nil), "api.Address")
-	proto.RegisterType((*AddressResponse)(nil), "api.AddressResponse")
+	proto.RegisterType((*CreateAddressResponse)(nil), "api.CreateAddressResponse")
 	proto.RegisterType((*ListAddressesByParentIdAndTypeRequest)(nil), "api.ListAddressesByParentIdAndTypeRequest")
 	proto.RegisterType((*ListAddressesByParentIdAndTypeResponse)(nil), "api.ListAddressesByParentIdAndTypeResponse")
 	proto.RegisterType((*GetAddressByIdRequest)(nil), "api.GetAddressByIdRequest")
+	proto.RegisterType((*GetAddressResponse)(nil), "api.GetAddressResponse")
 	proto.RegisterType((*DeleteAddressRequest)(nil), "api.DeleteAddressRequest")
-	proto.RegisterType((*Empty)(nil), "api.Empty")
+	proto.RegisterType((*DeleteAddressResponse)(nil), "api.DeleteAddressResponse")
 }
 
 func init() { proto.RegisterFile("address.proto", fileDescriptor_982c640dad8fe78e) }
 
 var fileDescriptor_982c640dad8fe78e = []byte{
-	// 350 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x8c, 0x93, 0xcf, 0x4b, 0x02, 0x41,
-	0x14, 0xc7, 0xdd, 0x5d, 0x7f, 0xe4, 0x2b, 0x0d, 0x06, 0x03, 0xdb, 0x3a, 0xc8, 0x50, 0x26, 0x05,
-	0x1e, 0xec, 0x50, 0x57, 0xcd, 0x08, 0x21, 0x22, 0xb6, 0x0e, 0x41, 0x50, 0x6c, 0xcd, 0x3b, 0x0c,
-	0xe8, 0x3a, 0xed, 0x8c, 0xc1, 0xfe, 0x95, 0xfd, 0x4b, 0xe1, 0x38, 0x2b, 0x8c, 0xcd, 0x92, 0xb7,
-	0xe1, 0xcd, 0xf3, 0xf3, 0xbe, 0xef, 0xe3, 0x2c, 0x34, 0x62, 0xc6, 0x52, 0x94, 0xb2, 0x2f, 0xd2,
-	0xb9, 0x9a, 0x93, 0x20, 0x16, 0x9c, 0xbe, 0x42, 0xeb, 0x26, 0xc5, 0x58, 0xe1, 0x70, 0x75, 0x17,
-	0xe1, 0xd7, 0x02, 0xa5, 0x22, 0x04, 0xca, 0x49, 0x3c, 0xc3, 0xb6, 0xd7, 0xf1, 0x7a, 0xf5, 0x48,
-	0x9f, 0x97, 0x35, 0x95, 0x09, 0x6c, 0xfb, 0xab, 0xda, 0xf2, 0x4c, 0x8e, 0xa0, 0x2e, 0xe2, 0x14,
-	0x13, 0xf5, 0xce, 0x59, 0x3b, 0xe8, 0x78, 0xbd, 0x4a, 0xb4, 0xb3, 0x2a, 0x4c, 0x18, 0x7d, 0x83,
-	0x9a, 0xc1, 0x92, 0x26, 0xf8, 0x9c, 0x69, 0x5a, 0x25, 0xf2, 0x39, 0x5b, 0xf3, 0x7d, 0x07, 0x3f,
-	0x28, 0xe2, 0x97, 0x37, 0xf8, 0x57, 0xb0, 0xbf, 0x8e, 0x2d, 0xc5, 0x3c, 0x91, 0x48, 0x4e, 0xa0,
-	0x9a, 0xa2, 0x5c, 0x4c, 0x95, 0x9e, 0xb5, 0x3b, 0xd8, 0xeb, 0xc7, 0x82, 0xf7, 0xf3, 0x2e, 0x73,
-	0x47, 0x5f, 0xe0, 0xf4, 0x9e, 0x4b, 0x65, 0xca, 0x28, 0x47, 0xd9, 0xa3, 0x61, 0x0e, 0x13, 0xf6,
-	0x9c, 0x09, 0xcc, 0x35, 0x58, 0xe3, 0x3d, 0x7b, 0xbc, 0xcb, 0x07, 0x7d, 0x80, 0xee, 0x7f, 0x64,
-	0x47, 0xd2, 0xa0, 0x30, 0xe9, 0x19, 0x1c, 0xdc, 0x61, 0x8e, 0x1b, 0x65, 0x13, 0x96, 0x27, 0xdb,
-	0x10, 0x4a, 0xbb, 0xd0, 0x1a, 0xe3, 0x14, 0xff, 0xfc, 0x91, 0x9b, 0x7d, 0x35, 0xa8, 0xdc, 0xce,
-	0x84, 0xca, 0x06, 0x3f, 0x3e, 0x34, 0x4d, 0xef, 0x13, 0xa6, 0xdf, 0xfc, 0x13, 0xc9, 0x08, 0x1a,
-	0xd6, 0x63, 0x20, 0x87, 0x3a, 0x93, 0xeb, 0x81, 0x84, 0x2d, 0x2b, 0xae, 0x59, 0x8a, 0x96, 0x48,
-	0x06, 0xc7, 0x4e, 0x01, 0x66, 0x7d, 0x72, 0xae, 0x7f, 0xb7, 0x95, 0xfd, 0xf0, 0x62, 0xab, 0xde,
-	0xf5, 0xe8, 0x31, 0x34, 0x6d, 0x57, 0x24, 0xd4, 0x00, 0xa7, 0xc0, 0xc2, 0x05, 0xae, 0xa1, 0x61,
-	0x89, 0x34, 0x12, 0x5c, 0x72, 0x43, 0xd0, 0x57, 0xda, 0x27, 0x2d, 0x7d, 0x54, 0xf5, 0x77, 0x75,
-	0xf9, 0x1b, 0x00, 0x00, 0xff, 0xff, 0xe2, 0x2a, 0x75, 0xce, 0x68, 0x03, 0x00, 0x00,
+	// 359 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x94, 0x93, 0x41, 0x4b, 0xc3, 0x30,
+	0x14, 0xc7, 0xd7, 0x76, 0x9b, 0xee, 0xe9, 0x76, 0x08, 0x1b, 0x9b, 0xd5, 0xc3, 0x08, 0x3a, 0x87,
+	0xc2, 0x0e, 0xf3, 0x26, 0x78, 0xd8, 0x14, 0xb6, 0x81, 0x88, 0x54, 0x0f, 0x82, 0xa0, 0x54, 0xf3,
+	0x0e, 0x81, 0xd9, 0xc6, 0x26, 0x13, 0xfa, 0x8d, 0xfd, 0x18, 0xb2, 0x36, 0x9d, 0xb6, 0x66, 0x38,
+	0x6f, 0xe1, 0xbd, 0xd7, 0xdf, 0xfb, 0xf3, 0x4b, 0x0a, 0x75, 0x9f, 0xb1, 0x08, 0xa5, 0x1c, 0x88,
+	0x28, 0x54, 0x21, 0x71, 0x7c, 0xc1, 0xe9, 0x23, 0x34, 0x2f, 0x23, 0xf4, 0x15, 0x8e, 0xd2, 0x9e,
+	0x87, 0xef, 0x0b, 0x94, 0x8a, 0x10, 0x28, 0x07, 0xfe, 0x1b, 0x76, 0xac, 0xae, 0xd5, 0xaf, 0x79,
+	0xc9, 0x79, 0x59, 0x53, 0xb1, 0xc0, 0x8e, 0x9d, 0xd6, 0x96, 0x67, 0xb2, 0x0f, 0x35, 0xe1, 0x47,
+	0x18, 0xa8, 0x67, 0xce, 0x3a, 0x4e, 0xd7, 0xea, 0x57, 0xbc, 0xed, 0xb4, 0x30, 0x63, 0xf4, 0x09,
+	0xb6, 0x34, 0x96, 0x34, 0xc0, 0xe6, 0x2c, 0xa1, 0x55, 0x3c, 0x9b, 0xb3, 0x15, 0xdf, 0x36, 0xf0,
+	0x9d, 0x75, 0xfc, 0x72, 0x81, 0x7f, 0x01, 0xad, 0x42, 0x78, 0x29, 0xc2, 0x40, 0x22, 0x39, 0x84,
+	0x6a, 0x84, 0x72, 0x31, 0x57, 0xc9, 0xc6, 0x9d, 0xe1, 0xee, 0xc0, 0x17, 0x7c, 0x90, 0x4d, 0xe9,
+	0x1e, 0x7d, 0x80, 0xa3, 0x6b, 0x2e, 0x95, 0x2e, 0xa3, 0x1c, 0xc7, 0xb7, 0x9a, 0x3c, 0x0a, 0xd8,
+	0x7d, 0x2c, 0x30, 0x93, 0x91, 0x0b, 0x61, 0xe5, 0x43, 0x98, 0xac, 0xd0, 0x1b, 0xe8, 0xfd, 0x45,
+	0x36, 0x24, 0x75, 0xd6, 0x26, 0x3d, 0x86, 0xd6, 0x04, 0x33, 0xdc, 0x38, 0x9e, 0xb1, 0x2c, 0x59,
+	0x41, 0x2b, 0x3d, 0x07, 0xf2, 0x3d, 0xf8, 0x4f, 0x1d, 0x3d, 0x68, 0x5e, 0xe1, 0x1c, 0x7f, 0x3d,
+	0x85, 0xe2, 0x8e, 0x36, 0xb4, 0x0a, 0x73, 0xe9, 0x9a, 0xe1, 0xa7, 0x0d, 0x0d, 0x5d, 0xbb, 0xc3,
+	0xe8, 0x83, 0xbf, 0x22, 0x99, 0x42, 0x3d, 0x77, 0x43, 0x64, 0x2f, 0x59, 0x6d, 0x7a, 0x72, 0xae,
+	0x6b, 0x6a, 0xa5, 0x68, 0x5a, 0x22, 0x31, 0x1c, 0x18, 0x95, 0x6a, 0xa1, 0xe4, 0x24, 0xf9, 0x7a,
+	0xa3, 0xfb, 0x74, 0x4f, 0x37, 0x9a, 0x5d, 0xad, 0x9e, 0x40, 0x23, 0x6f, 0x9f, 0xa4, 0x51, 0x8d,
+	0x57, 0xe2, 0xb6, 0x0b, 0xbd, 0x1f, 0xa0, 0x29, 0xd4, 0x73, 0xe6, 0xb4, 0x0d, 0x93, 0x75, 0x6d,
+	0xc3, 0x28, 0x9a, 0x96, 0x5e, 0xaa, 0xc9, 0x2f, 0x7c, 0xf6, 0x15, 0x00, 0x00, 0xff, 0xff, 0x25,
+	0x5b, 0xd6, 0x8f, 0xd3, 0x03, 0x00, 0x00,
 }
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -429,10 +470,10 @@ const _ = grpc.SupportPackageIsVersion4
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
 type AddressServiceClient interface {
-	CreateAddress(ctx context.Context, in *CreateAddressRequest, opts ...grpc.CallOption) (*AddressResponse, error)
+	CreateAddress(ctx context.Context, in *CreateAddressRequest, opts ...grpc.CallOption) (*CreateAddressResponse, error)
 	ListAddressesByParentAndType(ctx context.Context, in *ListAddressesByParentIdAndTypeRequest, opts ...grpc.CallOption) (*ListAddressesByParentIdAndTypeResponse, error)
-	GetAddressById(ctx context.Context, in *GetAddressByIdRequest, opts ...grpc.CallOption) (*AddressResponse, error)
-	DeleteAddress(ctx context.Context, in *DeleteAddressRequest, opts ...grpc.CallOption) (*Empty, error)
+	GetAddressById(ctx context.Context, in *GetAddressByIdRequest, opts ...grpc.CallOption) (*GetAddressResponse, error)
+	DeleteAddress(ctx context.Context, in *DeleteAddressRequest, opts ...grpc.CallOption) (*DeleteAddressResponse, error)
 }
 
 type addressServiceClient struct {
@@ -443,8 +484,8 @@ func NewAddressServiceClient(cc *grpc.ClientConn) AddressServiceClient {
 	return &addressServiceClient{cc}
 }
 
-func (c *addressServiceClient) CreateAddress(ctx context.Context, in *CreateAddressRequest, opts ...grpc.CallOption) (*AddressResponse, error) {
-	out := new(AddressResponse)
+func (c *addressServiceClient) CreateAddress(ctx context.Context, in *CreateAddressRequest, opts ...grpc.CallOption) (*CreateAddressResponse, error) {
+	out := new(CreateAddressResponse)
 	err := c.cc.Invoke(ctx, "/api.AddressService/CreateAddress", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -461,8 +502,8 @@ func (c *addressServiceClient) ListAddressesByParentAndType(ctx context.Context,
 	return out, nil
 }
 
-func (c *addressServiceClient) GetAddressById(ctx context.Context, in *GetAddressByIdRequest, opts ...grpc.CallOption) (*AddressResponse, error) {
-	out := new(AddressResponse)
+func (c *addressServiceClient) GetAddressById(ctx context.Context, in *GetAddressByIdRequest, opts ...grpc.CallOption) (*GetAddressResponse, error) {
+	out := new(GetAddressResponse)
 	err := c.cc.Invoke(ctx, "/api.AddressService/GetAddressById", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -470,8 +511,8 @@ func (c *addressServiceClient) GetAddressById(ctx context.Context, in *GetAddres
 	return out, nil
 }
 
-func (c *addressServiceClient) DeleteAddress(ctx context.Context, in *DeleteAddressRequest, opts ...grpc.CallOption) (*Empty, error) {
-	out := new(Empty)
+func (c *addressServiceClient) DeleteAddress(ctx context.Context, in *DeleteAddressRequest, opts ...grpc.CallOption) (*DeleteAddressResponse, error) {
+	out := new(DeleteAddressResponse)
 	err := c.cc.Invoke(ctx, "/api.AddressService/DeleteAddress", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -481,26 +522,26 @@ func (c *addressServiceClient) DeleteAddress(ctx context.Context, in *DeleteAddr
 
 // AddressServiceServer is the server API for AddressService service.
 type AddressServiceServer interface {
-	CreateAddress(context.Context, *CreateAddressRequest) (*AddressResponse, error)
+	CreateAddress(context.Context, *CreateAddressRequest) (*CreateAddressResponse, error)
 	ListAddressesByParentAndType(context.Context, *ListAddressesByParentIdAndTypeRequest) (*ListAddressesByParentIdAndTypeResponse, error)
-	GetAddressById(context.Context, *GetAddressByIdRequest) (*AddressResponse, error)
-	DeleteAddress(context.Context, *DeleteAddressRequest) (*Empty, error)
+	GetAddressById(context.Context, *GetAddressByIdRequest) (*GetAddressResponse, error)
+	DeleteAddress(context.Context, *DeleteAddressRequest) (*DeleteAddressResponse, error)
 }
 
 // UnimplementedAddressServiceServer can be embedded to have forward compatible implementations.
 type UnimplementedAddressServiceServer struct {
 }
 
-func (*UnimplementedAddressServiceServer) CreateAddress(ctx context.Context, req *CreateAddressRequest) (*AddressResponse, error) {
+func (*UnimplementedAddressServiceServer) CreateAddress(ctx context.Context, req *CreateAddressRequest) (*CreateAddressResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateAddress not implemented")
 }
 func (*UnimplementedAddressServiceServer) ListAddressesByParentAndType(ctx context.Context, req *ListAddressesByParentIdAndTypeRequest) (*ListAddressesByParentIdAndTypeResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListAddressesByParentAndType not implemented")
 }
-func (*UnimplementedAddressServiceServer) GetAddressById(ctx context.Context, req *GetAddressByIdRequest) (*AddressResponse, error) {
+func (*UnimplementedAddressServiceServer) GetAddressById(ctx context.Context, req *GetAddressByIdRequest) (*GetAddressResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetAddressById not implemented")
 }
-func (*UnimplementedAddressServiceServer) DeleteAddress(ctx context.Context, req *DeleteAddressRequest) (*Empty, error) {
+func (*UnimplementedAddressServiceServer) DeleteAddress(ctx context.Context, req *DeleteAddressRequest) (*DeleteAddressResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteAddress not implemented")
 }
 
