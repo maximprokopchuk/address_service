@@ -79,7 +79,11 @@ func (server *GRPCServer) GetAddressById(ctx context.Context, req *api.GetAddres
 }
 
 func (server *GRPCServer) DeleteAddress(ctx context.Context, req *api.DeleteAddressRequest) (*api.DeleteAddressResponse, error) {
-	err := server.Store.Queries.DeleteAddress(ctx, int64(req.GetId()))
+	params := sqlc.DeleteAddressParams{
+		ID:   int64(req.GetId()),
+		Type: req.GetType(),
+	}
+	err := server.Store.Queries.DeleteAddress(ctx, params)
 	if err != nil {
 		return nil, err
 	}

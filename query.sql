@@ -22,4 +22,4 @@ RETURNING *;
 
 -- name: DeleteAddress :exec
 DELETE FROM address
-WHERE id = $1;
+WHERE id = $1 AND type = $2;

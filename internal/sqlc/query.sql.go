@@ -40,11 +40,16 @@ func (q *Queries) CreateAddress(ctx context.Context, arg CreateAddressParams) (A
 
 const deleteAddress = `-- name: DeleteAddress :exec
 DELETE FROM address
-WHERE id = $1
+WHERE id = $1 AND type = $2
 `
 
-func (q *Queries) DeleteAddress(ctx context.Context, id int64) error {
-	_, err := q.db.Exec(ctx, deleteAddress, id)
+type DeleteAddressParams struct {
+	ID   int64
+	Type string
+}
+
+func (q *Queries) DeleteAddress(ctx context.Context, arg DeleteAddressParams) error {
+	_, err := q.db.Exec(ctx, deleteAddress, arg.ID, arg.Type)
 	return err
 }
 
