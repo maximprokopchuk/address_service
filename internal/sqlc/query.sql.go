@@ -65,14 +65,19 @@ func (q *Queries) GetAddress(ctx context.Context, id int64) (Address, error) {
 	return i, err
 }
 
-const listAddressesByParent = `-- name: ListAddressesByParent :many
+const listAddressesByParentIdAndType = `-- name: ListAddressesByParentIdAndType :many
 SELECT id, type, name, parent_id FROM address
-WHERE parent_id = $1
+WHERE parent_id = $1 AND type = $2
 ORDER BY name
 `
 
-func (q *Queries) ListAddressesByParent(ctx context.Context, parentID pgtype.Int4) ([]Address, error) {
-	rows, err := q.db.Query(ctx, listAddressesByParent, parentID)
+type ListAddressesByParentIdAndTypeParams struct {
+	ParentID pgtype.Int4
+	Type     string
+}
+
+func (q *Queries) ListAddressesByParentIdAndType(ctx context.Context, arg ListAddressesByParentIdAndTypeParams) ([]Address, error) {
+	rows, err := q.db.Query(ctx, listAddressesByParentIdAndType, arg.ParentID, arg.Type)
 	if err != nil {
 		return nil, err
 	}

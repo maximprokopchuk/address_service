@@ -2,9 +2,9 @@
 SELECT * FROM address
 WHERE id = $1 LIMIT 1;
 
--- name: ListAddressesByParent :many
+-- name: ListAddressesByParentIdAndType :many
 SELECT * FROM address
-WHERE parent_id = $1
+WHERE parent_id = $1 AND type = $2
 ORDER BY name;
 
 -- name: ListTopLevelAddresses :many
