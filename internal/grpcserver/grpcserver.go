@@ -3,10 +3,13 @@ package grpcserver
 import (
 	"context"
 
+	"github.com/jackc/pgx/v5"
 	"github.com/jackc/pgx/v5/pgtype"
 	"github.com/maximprokopchuk/address_service/internal/sqlc"
 	"github.com/maximprokopchuk/address_service/internal/store"
 	"github.com/maximprokopchuk/address_service/pkg/api"
+	"google.golang.org/grpc/codes"
+	"google.golang.org/grpc/status"
 )
 
 type GRPCServer struct {
@@ -67,6 +70,9 @@ func (server *GRPCServer) ListAddressesByParentAndType(ctx context.Context, req 
 func (server *GRPCServer) GetAddressById(ctx context.Context, req *api.GetAddressByIdRequest) (*api.GetAddressResponse, error) {
 	rec, err := server.Store.Queries.GetAddress(ctx, int64(req.GetId()))
 	if err != nil {
+		if err == pgx.ErrNoRows {
+			err = status.Error(codes.NotFound, "address not found")
+		}
 		return nil, err
 	}
 	return &api.GetAddressResponse{Result: &api.Address{Id: int32(rec.ID), Name: rec.Name, Type: rec.Type, ParentId: rec.ParentID.Int32}}, nil
