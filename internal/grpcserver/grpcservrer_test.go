@@ -12,7 +12,8 @@ import (
 
 func TestServer(t *testing.T) {
 	cfg := config.NewConfig()
-	toml.DecodeFile("configs/config.test.toml", cfg)
+	_, err := toml.DecodeFile("../../configs/config.test.toml", cfg)
+	assert.Nil(t, err)
 	st := store.New(cfg.Store)
 	server := grpcserver.New(st)
 	assert.NotNil(t, server)
