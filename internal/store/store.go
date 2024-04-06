@@ -43,5 +43,5 @@ func (s *Store) Open(ctx context.Context) error {
 }
 
 func (s *Store) Close(ctx context.Context) {
-	defer s.Connection.Close(ctx)
+	s.Connection.Close(ctx)
 }
