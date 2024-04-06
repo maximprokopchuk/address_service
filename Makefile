@@ -24,6 +24,9 @@ sqlc_generate:
 deps:
 		go mod tidy
 
+.PHONY: lint
+lint:
+		golangci-lint run
 
 
 DEFAULT_GOAL := build
